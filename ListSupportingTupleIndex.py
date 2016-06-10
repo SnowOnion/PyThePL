@@ -40,27 +40,18 @@ s.indice(int) #?
 
 
 '''
-def accessByTupleLikeIndex(sequence, indices):
-	if isinstance(indices,int):
-		return sequence[indices]
-	elif isinstance(indices,tuple):
-		for index in indices:
-			sequence=sequence[index]
-		return sequence
-
+class ListSupportingTupleIndex(list):
+	def __getitem__(self, indices):
+		if isinstance(indices,int):
+			return super().__getitem__(indices)
+		elif isinstance(indices,tuple):
+			this=self # Using 'self' is just OK!! (may be some bad impact)
+			for index in indices:
+				this=this[index]
+			return this
 
 
 if __name__ == '__main__':
-	m=[[1,2],[3,4]]
-	print(accessByTupleLikeIndex(m,(0,0)))
+	m=ListSupportingTupleIndex([[1,2],[3,4]])
+	print(m[0,0])
 
-	def f(i):
-		i.value=2
-	class I:
-		def __init__(self,value):
-			self.value=value
-		def __str__(self):
-			return str(self.value)
-	ii=I(1)
-	f(ii)
-	print(ii)
