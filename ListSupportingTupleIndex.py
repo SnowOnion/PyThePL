@@ -40,10 +40,27 @@ s.indice(int) #?
 
 
 '''
-def accessByTupleIndex(nested_sequence, index_tuple):
-	if()
-	return nested_sequence[index_tuple]
+def accessByTupleLikeIndex(sequence, indices):
+	if isinstance(indices,int):
+		return sequence[indices]
+	elif isinstance(indices,tuple):
+		for index in indices:
+			sequence=sequence[index]
+		return sequence
+
+
 
 if __name__ == '__main__':
 	m=[[1,2],[3,4]]
-	print(accessByTupleIndex(m,(0,0)))
+	print(accessByTupleLikeIndex(m,(0,0)))
+
+	def f(i):
+		i.value=2
+	class I:
+		def __init__(self,value):
+			self.value=value
+		def __str__(self):
+			return str(self.value)
+	ii=I(1)
+	f(ii)
+	print(ii)
