@@ -39,14 +39,24 @@ s.start s.stop s.step
 s.indice(int) #?
 
 
+
+Doc:
+https://docs.python.org/3/library/stdtypes.html#sequence-types-list-tuple-range
+https://docs.python.org/3.5/library/operator.html
+https://docs.python.org/3/reference/datamodel.html#object.__delitem__
+
+TODO:
+OO特性 如 多继承
+
 '''
 class ListSupportingTupleIndex(list):
 	def __getitem__(self, indices):
 		if isinstance(indices,int):
 			return super().__getitem__(indices)
 		elif isinstance(indices,tuple):
-			this=self # Using 'self' is just OK!! (may be some bad impact)
+			this=self 
 			for index in indices:
+				# Not using 'this', Assigning to name 'self' is just OK!! (may be some bad impact)
 				this=this[index]
 			return this
 
