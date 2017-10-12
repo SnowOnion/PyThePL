@@ -1,11 +1,8 @@
+#!/usr/local/bin/python3
 # -* - coding: UTF-8 -* -
-#!/usr/bin/python
 # Tested only in python 3.x, not tested in python 2.x
 
-# class ListSupportingTupleIndex(list):
-# 	pass
-
-'''
+"""
 模仿 numpy.array
 
 >>> m
@@ -35,7 +32,7 @@ __setitem__(arg)
 __delitem__(arg) #?
 if isinstance(arg, slice)
 s=slice(1,9,2)
-s.start s.stop s.step 
+s.start s.stop s.step
 s.indice(int) #?
 
 
@@ -48,20 +45,21 @@ https://docs.python.org/3/reference/datamodel.html#object.__delitem__
 TODO:
 OO特性 如 多继承
 
-'''
+"""
+
+
 class ListSupportingTupleIndex(list):
-	def __getitem__(self, indices):
-		if isinstance(indices,int):
-			return super().__getitem__(indices)
-		elif isinstance(indices,tuple):
-			this=self 
-			for index in indices:
-				# Not using 'this', Assigning to name 'self' is just OK!! (may be some bad impact)
-				this=this[index]
-			return this
+    def __getitem__(self, indices):
+        if isinstance(indices, int):
+            return super().__getitem__(indices)
+        elif isinstance(indices, tuple):
+            this = self
+            for index in indices:
+                # Not using 'this', Assigning to name 'self' is just OK!! (may have some bad impact)
+                this = this[index]
+            return this
 
 
 if __name__ == '__main__':
-	m=ListSupportingTupleIndex([[1,2],[3,4]])
-	print(m[0,0])
-
+    m = ListSupportingTupleIndex([[1, 2], [3, 4]])
+    print(m[1, 0])
